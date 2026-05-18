@@ -9,23 +9,28 @@ public class StringProcessor {
         System.out.println("Введите строку:");
         String input = scanner.nextLine();
 
-        System.out.print("Введите символ для замены на пробел: ");
-        char targetChar = scanner.next().charAt(0);
+        // Проверка на допустимые символы
+        if (!isValidString(input)) {
+            System.out.println("Ошибка: строка содержит недопустимые символы!");
+            System.out.println("Допустимы: буквы (латиница/кириллица), знаки препинания (. ? ! , : ;) и одиночные пробелы");
+            return;
+        }
 
-        if (targetChar == ' ') {
+        System.out.print("Введите символ для замены на пробел: ");
+        String targetChar = scanner.next();
+
+        if (targetChar.equals(" ")) {
             System.out.println("Символ не может быть пробелом");
             return;
         }
         scanner.close();
 
         // Нормализация пробелов
-        String normalized = normalizeSpaces(input);
-
+        String normalized = deleteExtraSpaces(input);
         // Замена символа на пробел
         String replaced = replaceCharWithSpace(normalized, targetChar);
-
         // Финальная нормализация (если после замены появились двойные пробелы)
-        String result = normalizeSpaces(replaced);
+        String result = deleteExtraSpaces(replaced);
 
         System.out.println("\n=== РЕЗУЛЬТАТ ===");
         System.out.println("Исходная строка (после нормализации): " + normalized);
@@ -35,42 +40,36 @@ public class StringProcessor {
             System.out.println("\nСтрока не изменилась после преобразований.");
         }
     }
-        public static String normalizeSpaces(String str) {
-            StringBuilder result = new StringBuilder();
-            boolean lastWasSpace = false;
 
-            for (int i = 0; i < str.length(); i++) {
-                char currentChar = str.charAt(i);
+    // Проверка допустимости содержания строки
+    public static boolean isValidCharacter(char c) {
+        if (c >= 'a' && c <= 'z') return true;
+        if (c >= 'A' && c <= 'Z') return true;
+        if (c >= 'а' && c <= 'я') return true;
+        if (c >= 'А' && c <= 'Я') return true;
+        if (c == '.' || c == '?' || c == '!' || c == ',' || c == ':' || c == ';') return true;
+        if (c == ' ') return true;
 
-                if (currentChar == ' ') {
-                    // Если предыдущий символ НЕ был пробелом - добавляем пробел
-                    if (!lastWasSpace) {
-                        result.append(currentChar);
-                        lastWasSpace = true;
-                    }
-                    // Если предыдущий уже пробел - пропускаем
-                } else {
-                    result.append(currentChar);
-                    lastWasSpace = false;
-                }
-            }
-            return result.toString();
-        }
-
-    public static String replaceCharWithSpace(String str, char target) {
-        StringBuilder result = new StringBuilder();
-
+        return false;  // Недопустимый символ
+    }
+    public static boolean isValidString(String str) {
         for (int i = 0; i < str.length(); i++) {
-            char currentChar = str.charAt(i);
-
-            if (currentChar == target) {
-                result.append(' ');  // заменяем на пробел
-            } else {
-                result.append(currentChar);  // оставляем как есть
+            if (!isValidCharacter(str.charAt(i))) {
+                return false;
             }
         }
-
-        return result.toString();
+        return true;
     }
 
+        public static String deleteExtraSpaces(String str) {
+            return str.replaceAll("\\s+", " ");
+        }
+
+    public static String replaceCharWithSpace(String str, String targetChars) {
+        String result = str;
+        for (char c : targetChars.toCharArray()) {
+            result = result.replace(c, ' ');
+        }
+        return result;
+    }
 }

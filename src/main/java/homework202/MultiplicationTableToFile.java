@@ -21,7 +21,6 @@ public class MultiplicationTableToFile {
 
         saveToFile(numbers,"src/main/java/homework202/multiplication_table.txt");
 
-
         scanner.close();
 
     }
@@ -86,6 +85,5 @@ public class MultiplicationTableToFile {
         } catch (IOException e) {
             System.out.println("Ошибка при записи в файл: " + e.getMessage());
         }
-
     }
 }

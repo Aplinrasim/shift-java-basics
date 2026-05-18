@@ -14,7 +14,6 @@ public class MultiplicationTable {
         int[] numbers = generateSequence(first, second, step);
 
         printMultiplicationTable(numbers);
-
     }
     public static int[] generateSequence(int first, int second, int step) {
         int count = 0;
@@ -29,7 +28,6 @@ public class MultiplicationTable {
             index++;
         }
         return numbers;
-
     }
     public static void printMultiplicationTable(int[] numbers) {
         int n = numbers.length;
@@ -48,10 +46,5 @@ public class MultiplicationTable {
             }
             System.out.println();
         }
-
     }
-
-
-
-
 }

@@ -2,25 +2,25 @@ package homework18;
 
 public class LogicalOperationTable {
     public static void main(String[] arge) {
-        boolean P, Q;
-        boolean PT = true, PF = false;
-        boolean QT = true, QF = false;
+        boolean p, q;
+        boolean pTrue = true, pFalse = false;
+        boolean qTrue = true, qFalse = false;
 
         System.out.println("P\t\tQ\t\tP AND Q\t\tP OR Q\tP XOR Q\t\tNOT P");
-        P = PF;
-        Q = QF;
-        System.out.println(P + "\t" + Q + "\t" + (P & Q) + "\t\t" + (P | Q) + "\t" + (P ^ Q) + "\t\t" + (!P));
+        p = pFalse;
+        q = qFalse;
+        System.out.println(p + "\t" + q + "\t" + (p & q) + "\t\t" + (p | q) + "\t" + (p ^ q) + "\t\t" + (!p));
 
-        P = PT;
-        Q = QF;
-        System.out.println(P + "\t" + Q + "\t" + (P & Q) + "\t\t" + (P | Q) + "\t" + (P ^ Q) + "\t\t" + (!P));
+        p = pTrue;
+        q = qFalse;
+        System.out.println(p + "\t" + q + "\t" + (p & q) + "\t\t" + (p | q) + "\t" + (p ^ q) + "\t\t" + (!p));
 
-        P = PF;
-        Q = QT;
-        System.out.println(P + "\t" + Q + "\t" + (P & Q) + "\t\t" + (P | Q) + "\t" + (P ^ Q) + "\t\t" + (!P));
+        p = pFalse;
+        q = qTrue;
+        System.out.println(p + "\t" + q + "\t" + (p & q) + "\t\t" + (p | q) + "\t" + (p ^ q) + "\t\t" + (!p));
 
-        P = PT;
-        Q = QT;
-        System.out.println(P + "\t" + Q + "\t" + (P & Q) + "\t\t" + (P | Q) + "\t" + (P ^ Q) + "\t\t" + (!P));
+        p = pTrue;
+        q = qTrue;
+        System.out.println(p + "\t" + q + "\t" + (p & q) + "\t\t" + (p | q) + "\t" + (p ^ q) + "\t\t" + (!p));
     }
 }

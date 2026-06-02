@@ -1,6 +1,7 @@
 package homework19;
 
 import java.util.Scanner;
+
 public class MultiplicationTable {
     public static void main(String[] arge) {
         Scanner scanner = new Scanner(System.in);
@@ -15,6 +16,7 @@ public class MultiplicationTable {
 
         printMultiplicationTable(numbers);
     }
+
     public static int[] generateSequence(int first, int second, int step) {
         int count = 0;
         for (int i = first; i <= second; i += step) {
@@ -29,6 +31,7 @@ public class MultiplicationTable {
         }
         return numbers;
     }
+
     public static void printMultiplicationTable(int[] numbers) {
         int n = numbers.length;
 

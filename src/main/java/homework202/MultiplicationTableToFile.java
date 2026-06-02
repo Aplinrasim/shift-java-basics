@@ -17,9 +17,7 @@ public class MultiplicationTableToFile {
         int step = scanner.nextInt(); // Прочитать шаг
         int[] numbers = generateSequence(first, second, step);
 
-        //printMultiplicationTable(numbers) //Отключаем запись в консоль
-
-        saveToFile(numbers,"src/main/java/homework202/multiplication_table.txt");
+        saveToFile(numbers, "src/main/java/homework202/multiplication_table.txt");
 
         scanner.close();
 
@@ -38,26 +36,6 @@ public class MultiplicationTableToFile {
             index++;
         }
         return numbers;
-
-    }
-
-    public static void printMultiplicationTable(int[] numbers) {
-        int n = numbers.length;
-
-        System.out.print("      ");
-        for (int i = 0; i < n; i++) {
-            System.out.printf("%6d", numbers[i]);
-        }
-        System.out.println();
-
-        for (int i = 0; i < n; i++) {
-            System.out.printf("%6d", numbers[i]);
-            for (int j = 0; j < n; j++) {
-                int product = numbers[i] * numbers[j];
-                System.out.printf("%6d", product);
-            }
-            System.out.println();
-        }
 
     }
 

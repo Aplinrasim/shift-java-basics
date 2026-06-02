@@ -9,7 +9,11 @@ public class StringProcessor {
         System.out.println("Введите строку:");
         String input = scanner.nextLine();
 
-        // Проверка на допустимые символы
+        if (input.length() <= 1) {
+            System.out.println("Ошибка: длина строки должна быть больше 1 символа");
+            return;
+        }
+
         if (!isValidString(input)) {
             System.out.println("Ошибка: строка содержит недопустимые символы!");
             System.out.println("Допустимы: буквы (латиница/кириллица), знаки препинания (. ? ! , : ;) и одиночные пробелы");
@@ -18,6 +22,11 @@ public class StringProcessor {
 
         System.out.print("Введите символ для замены на пробел: ");
         String targetChar = scanner.next();
+
+        if (targetChar.length() != 1) {
+            System.out.println("Ошибка: нужно ввести ровно один символ");
+            return;
+        }
 
         if (targetChar.equals(" ")) {
             System.out.println("Символ не может быть пробелом");
@@ -41,35 +50,16 @@ public class StringProcessor {
         }
     }
 
-    // Проверка допустимости содержания строки
-    public static boolean isValidCharacter(char c) {
-        if (c >= 'a' && c <= 'z') return true;
-        if (c >= 'A' && c <= 'Z') return true;
-        if (c >= 'а' && c <= 'я') return true;
-        if (c >= 'А' && c <= 'Я') return true;
-        if (c == '.' || c == '?' || c == '!' || c == ',' || c == ':' || c == ';') return true;
-        if (c == ' ') return true;
-
-        return false;  // Недопустимый символ
-    }
     public static boolean isValidString(String str) {
-        for (int i = 0; i < str.length(); i++) {
-            if (!isValidCharacter(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
+        return str.matches("[a-zA-Zа-яА-Я.?!,:; ]+");
     }
 
-        public static String deleteExtraSpaces(String str) {
-            return str.replaceAll("\\s+", " ");
-        }
+    public static String deleteExtraSpaces(String str) {
+        return str.replaceAll(" +", " ");
+    }
 
     public static String replaceCharWithSpace(String str, String targetChars) {
-        String result = str;
-        for (char c : targetChars.toCharArray()) {
-            result = result.replace(c, ' ');
-        }
-        return result;
+        String escaped = java.util.regex.Pattern.quote(targetChars);
+        return str.replaceAll(escaped, " ");
     }
 }
